@@ -1,0 +1,138 @@
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 30vh;
+  scroll-snap-align: center;
+}
+
+/* hide all scrollbars */
+
+html *::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  max-width: 900px;
+  margin: 0 auto;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.page {
+  padding: 1rem;
+}
+
+.i-ching-container {
+  /* display: flex;
+  justify-content: space-around; */
+  position: relative;
+  height: 16rem;
+}
+
+label {
+  margin-right: 0.5rem;
+}
+
+input[type="checkbox"] {
+  transform: scale(1.5);
+}
+
+.months {
+  display: flex;
+  gap: 0.2rem;
+  flex-wrap: wrap;
+}
+button {
+  background-color: var(--button-background-color);
+  color: var(--button-text-color);
+  border-radius: 8px;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: var(--button-hover-background-color);
+  color: white;
+}
+
+button:disabled {
+  background-color: var(--button-disabled-background-color);
+  color: rgba(0, 0, 0, 0.482);
+  cursor: unset;
+}
+
+.card {
+  background-color: var(--card-background-color);
+  color: var(--card-text-color);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+input {
+  background-color: var(--input-background-color);
+  border: 1px solid var(--input-border-color);
+  color: var(--input-text-color);
+  padding: 10px;
+  border-radius: 4px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+/* add disabled for input */
+
+input:disabled {
+  background-color: var(--button-disabled-background-color);
+  color: var(--button-disabled-text-color);
+}
+
+input::placeholder {
+  color: var(--input-placeholder-color);
+}
+
+a,
+a:visited {
+  color: var(--text-color);
+}
+
+.navbar {
+  background-color: var(--surface-color);
+  color: var(--text-color);
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar a {
+  color: var(--text-color);
+  text-decoration: none;
+  margin: 0 10px;
+}
+
+.navbar a:hover {
+  color: var(--primary-color);
+}
+
+.tab {
+  background-color: var(--tab-background-color);
+  color: var(--tab-unselected-color);
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.tab.selected {
+  color: var(--tab-selected-color);
+  border-bottom: 2px solid var(--tab-selected-color);
+}
+
+.tooltip {
+  background-color: var(--tooltip-background-color);
+  color: var(--tooltip-text-color);
+  padding: 5px 10px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
