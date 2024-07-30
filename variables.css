@@ -9,6 +9,7 @@
   --text-secondary-color: #5f6368;
   --error-color: #b00020;
   --icon-color: #5f6368;
+  --border-color: black;
 
   /* Button Colors */
   --button-background-color: var(--primary-color);
@@ -62,6 +63,7 @@
   --text-secondary-color: #b3b3b3;
   --error-color: #cf6679;
   --icon-color: #b3b3b3;
+  --border-color: white;
 
   /* Button Colors */
   --button-background-color: var(--primary-color);
