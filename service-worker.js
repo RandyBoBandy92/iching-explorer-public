@@ -16,6 +16,11 @@ self.addEventListener("install", (event) => {
 });
 
 self.addEventListener("fetch", (event) => {
+  // Ignore non-GET requests and those that aren't supported by the Cache API
+  if (event.request.method !== "GET" || !event.request.url.startsWith("http")) {
+    return;
+  }
+
   event.respondWith(
     caches.match(event.request).then((response) => {
       // Cache hit - return response
