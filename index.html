@@ -3,7 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/iching-explorer-public/hex56.svg" />
+    <link rel="manifest" href="/iching-explorer-public/manifest.json" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="apple-mobile-web-app-title" content="I-Ching Explorer" />
+    <link rel="apple-touch-icon" href="/iching-explorer-public/hex56.svg" />
     <script>
       // Would love to have a better way to do this, but because there is a delay before the JS payload is loaded
       // This 'hack' ensures that the theme is set prior to rendering any content to the DOM.
@@ -26,10 +31,19 @@
     <link rel="stylesheet" href="variables.css" />
     <link rel="stylesheet" href="index.css" />
     <title>I Ching Explorer</title>
-    <script type="module" crossorigin src="/iching-explorer-public/assets/index-B5eDZi-o.js"></script>
-    <link rel="stylesheet" crossorigin href="/iching-explorer-public/assets/index-Wcx3WoHm.css">
+    <script type="module" crossorigin src="/iching-explorer-public/assets/main-DlVHvExM.js"></script>
+    <link rel="stylesheet" crossorigin href="/iching-explorer-public/assets/main-BHQhTXXe.css">
   </head>
   <body>
     <div id="root"></div>
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker.register(
+            "/iching-explorer-public/service-worker.js"
+          );
+        });
+      }
+    </script>
   </body>
 </html>
