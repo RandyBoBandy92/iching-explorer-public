@@ -1,4 +1,4 @@
-const CACHE_NAME = "iching-explorer-v1";
+const CACHE_NAME = "iching-explorer-v1.1";
 const BASE_NAME = "/iching-explorer-public";
 const urlsToCache = [
   BASE_NAME + "/",
