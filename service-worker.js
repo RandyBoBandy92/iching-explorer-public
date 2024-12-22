@@ -1,15 +1,16 @@
-const CACHE_NAME = "iching-explorer-v1.3";
+const VERSION = "1.3"; // Incremented version number
+const CACHE_NAME = `iching-explorer-v${VERSION}`; // Incremented cache name
 const BASE_NAME = "/iching-explorer-public";
 const HEXAGRAM_COUNT = 64;
 
 // URLs to cache
 const urlsToCache = [
-  `${BASE_NAME}/`,
-  `${BASE_NAME}/index.html`,
-  `${BASE_NAME}/manifest.json`,
+  `${BASE_NAME}/?v=${VERSION}`,
+  `${BASE_NAME}/index.html?v=${VERSION}`,
+  `${BASE_NAME}/manifest.json?v=${VERSION}`,
   ...Array.from(
     { length: HEXAGRAM_COUNT },
-    (_, i) => `${BASE_NAME}/hexagramJSONS/hexagram${i + 1}.json`
+    (_, i) => `${BASE_NAME}/hexagramJSONS/hexagram${i + 1}.json?v=${VERSION}`
   ),
 ];
 
@@ -65,22 +66,36 @@ self.addEventListener("fetch", (event) => {
   );
 });
 
-// Activate event - Clean up old caches
+// Activate event - Clean up old caches and take control immediately
 self.addEventListener("activate", (event) => {
   if (!isProduction) return;
 
   const cacheWhitelist = [CACHE_NAME];
   event.waitUntil(
-    caches.keys().then((cacheNames) => {
-      return Promise.all(
-        cacheNames.map((cacheName) => {
-          if (!cacheWhitelist.includes(cacheName)) {
-            return caches.delete(cacheName);
-          }
-        })
-      );
-    })
+    caches
+      .keys()
+      .then((cacheNames) => {
+        return Promise.all(
+          cacheNames.map((cacheName) => {
+            if (!cacheWhitelist.includes(cacheName)) {
+              console.log(`Deleting old cache: ${cacheName}`);
+              return caches.delete(cacheName);
+            }
+          })
+        );
+      })
+      .then(() => {
+        console.log("Old caches cleared. Claiming clients.");
+        return self.clients.claim(); // Activate new service worker immediately
+      })
   );
+});
+
+// Notify user of new service worker
+self.addEventListener("message", (event) => {
+  if (event.data && event.data.type === "SKIP_WAITING") {
+    self.skipWaiting();
+  }
 });
 
 // For development: Unregister existing service workers
