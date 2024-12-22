@@ -1,4 +1,4 @@
-const VERSION = "1.3"; // Incremented version number
+const VERSION = "1.4"; // Incremented version number
 const CACHE_NAME = `iching-explorer-v${VERSION}`; // Incremented cache name
 const BASE_NAME = "/iching-explorer-public";
 const HEXAGRAM_COUNT = 64;
